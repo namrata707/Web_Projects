@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimerProject</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .con{
+            width: 380px;
+            height: 200px;
+            border: 10px inset darkcyan;
+            text-align: center;
+            border-radius: 10px;
+            position: relative;
+            top: 100px;
+            left: 100px;
+        }
+        .con h1{
+            font-family: algerian;
+            position: relative;
+            top: 10px;
+            letter-spacing: 10px;
+            text-shadow: 2px 2px 5px red;
+        }
+        .timer{
+            position: relative;
+            top: 30px;
+            font-size: 40px;
+            font-weight: bolder;
+        }
+        .sep{
+            position: relative;
+            top: 30px;
+            font-size: 40px;
+            font-weight: bolder;
+            color: red ;
+        }
+
+        #hh,#mm,#ss,#mss{
+            font-size: 15px;
+        }
+        .btn{
+            width: 80px;
+            height: 30px;
+            position: relative;
+            top: 25px;
+            margin-left: 10px;
+            border-radius: 10px;
+            border: 3px outset;
+            font-weight: bold;
+            font-size: 20px;  
+            box-shadow: 3px 3px 5px red;     
+        }
+        #btn1{
+            background-color: green;
+            color: white;
+        }
+        #btn2{
+            background-color: red;
+            color: white;
+        }
+        #btn3{
+            background-color: navy;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="con">
+        <h1>Stop Watch</h1>
+        <span class="timer" id="h">00</span>    
+        <span class="timer" id="hh">H </span>
+        <span class="sep"> : </span>
+        <span class="timer" id="m">00</span>
+        <span class="timer" id="mm">M </span>
+        <span class="sep"> : </span>
+        <span class="timer" id="s">00</span>
+        <span class="timer" id="ss">S </span>
+        <span class="sep"> : </span>
+        <span class="timer" id="ms">00</span>
+        <span class="timer" id="mss">Ms </span><br><br>
+        <button class="btn" id="btn1" onclick="start()">Start</button>
+        <button class="btn" id="btn2" onclick="stop()">Stop</button>
+        <button class="btn" id="btn3" onclick="reset()">Reset</button>
+    </div>
+
+
+    <script>
+        var h=0
+        var m=0
+        var s=0
+        var ms=0
+        var timer=false
+
+        function start()
+        {
+            timer=true
+            stopwatch()
+        }
+        function stop()
+        {
+            timer=false
+
+        }
+        function reset()
+        {
+            timer=false
+            h=0
+            m=0
+            s=0
+            ms=0
+            document.getElementById('ms').innerHTML="0"
+            document.getElementById('s').innerHTML="00"
+            document.getElementById('m').innerHTML="00"
+            document.getElementById('h').innerHTML="00"
+                
+
+        }
+        function stopwatch()
+        {
+             if(timer==true)
+             {
+                if(ms==100)
+                {
+                    ms=0
+                    s=s+1
+
+                }
+                else{
+                ms=ms+1
+                }
+                if(s==60)
+                {
+                    s=0
+                    ms=0
+                    m=m+1
+                }
+                if(m==60)
+                {
+                    m=0
+                    s=0
+                    ms=0
+                    h=h+1
+                }
+                setTimeout('stopwatch()',10)
+                document.getElementById('ms').innerHTML=ms
+                document.getElementById('s').innerHTML=s
+                document.getElementById('m').innerHTML=m
+                document.getElementById('h').innerHTML=h
+                 
+             }
+        }
+
+    </script>
+    
+</body>
+</html>
